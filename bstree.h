@@ -295,15 +295,15 @@ private:
 
 		// update parents
 		left_child->parent = n->parent;
-        n->parent = left_child;
-        if (T2)
-            temp_ptr->parent = n;
-        if (left_child->parent) {
-            if (left_child->parent->left == n)
-                left_child->parent->left = left_child;
-            else if (left_child->parent->right == n)
-                left_child->parent->right = left_child;
-        }
+		n->parent = left_child;
+		if (T2)
+			T2->parent = n;
+
+		// attach rotated subtree to grandparent
+		if (left_child->parent) {
+			(left_child->parent->left == n ? left_child->parent->left : left_child->parent->right) = left_child;
+		}
+
 		return left_child;
 	}
 	node* rotateLeft(node* n) {
@@ -318,16 +318,16 @@ private:
 
 		// update parents
 		right_child->parent = n->parent;
-        n->parent = right_child;
-        if (T2)
-            temp_ptr->parent = n;
-        if (right_child->parent) {
-            if (right_child->parent->left == n)
-                right_child->parent->left = right_child;
-            else if (right_child->parent->right == n)
-                right_child->parent->right = right_child;
-        }
-		return right_child; 
+		n->parent = right_child;
+		if (T2)
+			T2->parent = n;
+
+		// attach rotated subtree to grandparent
+		if (right_child->parent) {
+			(right_child->parent->left == n ? right_child->parent->left : right_child->parent->right) = right_child;
+		}
+
+		return right_child;
 	}
 
 	// returns the height of the subtree if balanced, or -2 if not AVL balanced
