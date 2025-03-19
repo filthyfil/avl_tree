@@ -334,11 +334,10 @@ private:
 		if (!n)
 			return -1;  // by AVL convention, empty subtree height is -1
 		int leftHeight = checkAVL(n->left);
-		if (leftHeight == -2) return -2;  // left subtree is not AVL (-2 is arbitrary) > 1 
 		int rightHeight = checkAVL(n->right);
-		if (rightHeight == -2) return -2; // right subtree is not AVL (-2 is arbitrary) > 1
+		
 		if (std::abs(leftHeight - rightHeight) > 1)
-			return -2;  // this node violates the AVL condition (-2 is arbitrary) > 1
+			return -2;  // this node violates the AVL condition
 		return 1 + std::max(leftHeight, rightHeight);
 	}
 public:
