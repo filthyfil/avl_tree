@@ -14,7 +14,6 @@ private:
 	class node {
 	public:
 		T data;
-		int height; // adding height for AVL implementation
 		node* left;
 		node* right;
 		node* parent;
